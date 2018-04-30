@@ -13,7 +13,6 @@
     "babel-loader": "^7.1.4",
     "babel-preset-react-app": "^3.1.1",
     "babel-runtime": "6.26.0",
-    "bricks.js": "^1.8.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "^2.3.0",
     "classnames": "^2.2.5",
@@ -21,9 +20,6 @@
     "css-loader": "^0.28.11",
     "date-fns": "^1.28.5",
     "debug": "^3.1.0",
-    "dotenv": "^5.0.0",
-    "evtx": "^0.3.3",
-    "express": "^4.15.4",
     "extract-text-webpack-plugin": "3.0.0",
     "file-loader": "^1.1.6",
     "formik": "^0.11.11",
@@ -32,20 +28,8 @@
     "html-webpack-plugin": "2.29.0",
     "ignore-styles": "^5.0.1",
     "jest": "^22.4.3",
-    "joi": "^13.1.2",
-    "mock-local-storage": "^1.0.5",
-    "moment": "^2.20.1",
-    "mongobless": "^2.1.1",
-    "mongodb": "^3.0.2",
-    "morgan": "^1.9.0",
-    "morgan-debug": "^2.0.0",
-    "njwt": "^0.4.0",
-    "nodemailer": "^4.4.2",
-    "nodemailer-mailgun-transport": "^1.3.6",
-    "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "^3.3.0",
     "postcss-loader": "^2.1.4",
-    "promise": "8.0.1",
     "prop-types": "^15.5.10",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
@@ -54,47 +38,31 @@
     "react-dom": "^16.2.0",
     "react-google-login": "^3.0.4",
     "react-intl": "^2.4.0",
-    "react-markdown": "^3.1.5",
-    "react-masonry-layout": "^0.3.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-select": "^1.2.1",
     "react-test-renderer": "^16.2.0",
     "recompose": "^0.27.0",
     "redux": "^4.0.0",
-    "redux-form": "^7.2.3",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "remarkable": "^1.7.1",
-    "request": "^2.81.0",
     "reselect": "^3.0.1",
-    "serve-favicon": "^2.4.4",
-    "socket.io": "^2.0.3",
-    "socket.io-client": "^2.0.3",
-    "socketio": "^1.0.0",
     "style-loader": "^0.21.0",
-    "styled-components": "^3.1.6",
-    "sw-precache-webpack-plugin": "0.11.4",
-    "uppercamelcase": "^3.0.0",
-    "url-loader": "^1.0.1",
-    "uuid": "^3.2.1",
-    "webpack-manifest-plugin": "1.2.1",
-    "xlsx": "^0.12.4",
-    "yup": "^0.24.1"
+    "styled-components": "^3.1.6"
   },
   "scripts": {
+    "start:mock": "DEBUG=trip* trip-server --config src/mock/trip.config.js",
     "precommit": "lint-staged",
-    "eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
+    "eslint-check":
+      "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
     "lint": "eslint src --color",
     "wtest": "NODE_ENV=test node scripts/test.js --env=jsdom --runInBand",
     "test": "NODE_ENV=test jest --env=jsdom --runInBand --forceExit",
     "start": "NODE_ENV=development node scripts/start.js",
     "build": "NODE_ENV=production node scripts/build.js",
-    "bundle:stats": "NODE_ENV=production webpack -p --config ./config/webpack.config.prod.js --profile --json > stats.json",
-    "bundle:analyse": "webpack-bundle-analyzer ./stats.json ./build --report --mode=static",
-    "srv:dev": "NODE_ENV=development DEBUG=peep*,evtx* nodemon --watch src/server --watch params --exec 'babel-node src/server'",
-    "srv:dist": "NODE_ENV=production babel src --copy-files --out-dir dist",
-    "srv:run": "NODE_ENV=production DEBUG=peep*,evtx* node dist/server"
+    "bundle:stats":
+      "NODE_ENV=production webpack -p --config ./config/webpack.config.prod.js --profile --json > stats.json",
+    "bundle:analyse":
+      "webpack-bundle-analyzer ./stats.json ./build --report --mode=static"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -104,7 +72,7 @@
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "chai": "^4.1.2",
+    "dotenv": "^5.0.1",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
@@ -118,46 +86,30 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.6.1",
     "eslint-plugin-standard": "^3.0.1",
+    "faker": "^4.1.0",
     "husky": "^0.14.3",
     "jest-styled-components": "^5.0.1",
     "lint-staged": "^7.0.5",
     "nodemon": "^1.14.12",
     "prettier": "1.12.1",
-    "raf": "^3.4.0",
-    "should": "^13.2.1",
-    "sinon": "^5.0.0",
-    "socket.io-mock": "^1.2.3",
+    "trip-mock": "^0.3.0",
     "url-search-params-polyfill": "^3.0.0",
     "webpack": "^3.10.0",
     "webpack-bundle-analyzer": "^2.10.0",
     "webpack-dev-server": "2.7.1"
   },
   "lint-staged": {
-    "*.{js,json,css}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{js,json,css}": ["prettier --write", "git add"]
   },
   "babel": {
-    "presets": [
-      "latest",
-      "stage-0",
-      "react"
-    ],
-    "plugins": [
-      "ramda",
-      "transform-decorators-legacy"
-    ]
+    "presets": ["latest", "stage-0", "react"],
+    "plugins": ["ramda", "transform-decorators-legacy"]
   },
   "jest": {
     "verbose": true,
     "coverageDirectory": "./coverage/",
-    "testPathIgnorePatterns": [
-      "utils"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
+    "testPathIgnorePatterns": ["utils"],
+    "setupFiles": ["<rootDir>/config/polyfills.js"],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
       "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
@@ -169,20 +121,11 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ],
+    "moduleFileExtensions": ["web.js", "js", "json", "web.jsx", "jsx", "node"],
     "setupTestFrameworkScriptFile": "<rootDir>/enzyme.config.js"
   }
 }
