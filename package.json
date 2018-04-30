@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.43",
     "autoprefixer": "^8.3.0",
     "axios": "^0.18.0",
     "babel-core": "^6.26.0",
@@ -28,6 +29,7 @@
     "html-webpack-plugin": "2.29.0",
     "ignore-styles": "^5.0.1",
     "jest": "^22.4.3",
+    "material-ui": "^1.0.0-beta.44",
     "postcss-flexbugs-fixes": "^3.3.0",
     "postcss-loader": "^2.1.4",
     "prop-types": "^15.5.10",
