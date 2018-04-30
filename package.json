@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.43",
     "autoprefixer": "^8.3.0",
     "axios": "^0.18.0",
     "babel-core": "^6.26.0",
@@ -33,6 +34,7 @@
     "ignore-styles": "^5.0.1",
     "jest": "^22.4.3",
     "joi": "^13.1.2",
+    "material-ui": "^1.0.0-beta.44",
     "mock-local-storage": "^1.0.5",
     "moment": "^2.20.1",
     "mongobless": "^2.1.1",
@@ -84,15 +86,19 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
+    "eslint-check":
+      "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
     "lint": "eslint src --color",
     "wtest": "NODE_ENV=test node scripts/test.js --env=jsdom --runInBand",
     "test": "NODE_ENV=test jest --env=jsdom --runInBand --forceExit",
     "start": "NODE_ENV=development node scripts/start.js",
     "build": "NODE_ENV=production node scripts/build.js",
-    "bundle:stats": "NODE_ENV=production webpack -p --config ./config/webpack.config.prod.js --profile --json > stats.json",
-    "bundle:analyse": "webpack-bundle-analyzer ./stats.json ./build --report --mode=static",
-    "srv:dev": "NODE_ENV=development DEBUG=peep*,evtx* nodemon --watch src/server --watch params --exec 'babel-node src/server'",
+    "bundle:stats":
+      "NODE_ENV=production webpack -p --config ./config/webpack.config.prod.js --profile --json > stats.json",
+    "bundle:analyse":
+      "webpack-bundle-analyzer ./stats.json ./build --report --mode=static",
+    "srv:dev":
+      "NODE_ENV=development DEBUG=peep*,evtx* nodemon --watch src/server --watch params --exec 'babel-node src/server'",
     "srv:dist": "NODE_ENV=production babel src --copy-files --out-dir dist",
     "srv:run": "NODE_ENV=production DEBUG=peep*,evtx* node dist/server"
   },
@@ -133,31 +139,17 @@
     "webpack-dev-server": "2.7.1"
   },
   "lint-staged": {
-    "*.{js,json,css}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{js,json,css}": ["prettier --write", "git add"]
   },
   "babel": {
-    "presets": [
-      "latest",
-      "stage-0",
-      "react"
-    ],
-    "plugins": [
-      "ramda",
-      "transform-decorators-legacy"
-    ]
+    "presets": ["latest", "stage-0", "react"],
+    "plugins": ["ramda", "transform-decorators-legacy"]
   },
   "jest": {
     "verbose": true,
     "coverageDirectory": "./coverage/",
-    "testPathIgnorePatterns": [
-      "utils"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
+    "testPathIgnorePatterns": ["utils"],
+    "setupFiles": ["<rootDir>/config/polyfills.js"],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
       "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
@@ -169,20 +161,11 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ],
+    "moduleFileExtensions": ["web.js", "js", "json", "web.jsx", "jsx", "node"],
     "setupTestFrameworkScriptFile": "<rootDir>/enzyme.config.js"
   }
 }
