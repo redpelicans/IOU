@@ -13,7 +13,7 @@ const StyledTypography = styled(Typography)`
 
 const Header = () => {
   return (
-    <AppBar>
+    <AppBar position="static">
       <Toolbar>
         <StyledTypography color="inherit" variant="title">
           IOU by RedPelicans
