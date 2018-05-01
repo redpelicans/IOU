@@ -4,12 +4,14 @@ const initialState = {
   events: [],
 };
 
-const events = (state = initialState, action = {}) => {
+const events = (state = initialState, action) => {
   switch (action.type) {
     case EVENTS_LOADED:
-      return { ...state, events: action.payload };
-    default:
+      return { ...state, events: action.payload.events };
+    default: {
+      // console.log('action.type', action)
       return state;
+    }
   }
 };
 
