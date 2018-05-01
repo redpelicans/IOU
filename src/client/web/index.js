@@ -1,4 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App';
 
-ReactDOM.render(<div>Thomas</div>, document.getElementById('__IOU__'));
+ReactDOM.render(<App />, document.getElementById('__IOU__'));
