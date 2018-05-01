@@ -15,12 +15,8 @@ vibe.default(
       },
     },
   ) => {
-    mock('events')
-      .checkHeader({ 'content-Type': /application\/json/ })
-      .reply([200, events]);
+    mock('events').reply([200, events]);
 
-    mock('people')
-      .checkHeader({ 'content-Type': /application\/json/ })
-      .reply([200, people]);
+    mock('people').reply([200, people]);
   },
 );
