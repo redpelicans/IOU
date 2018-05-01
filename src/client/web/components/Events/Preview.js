@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { format } from 'date-fns';
 import styled from 'styled-components';
 import Card, {
   CardHeader,
@@ -12,17 +14,26 @@ const StyledCard = styled(Card)`
   max-width: 400px;
 `;
 
-const Preview = () => {
+const Preview = ({ createdAt, label }) => {
   return (
     <StyledCard>
-      <CardHeader avatar="R" subheader="21 Jan. 2017" title="Event" />
-      <CardMedia image="" title="event" />
+      <CardHeader
+        avatar="R"
+        subheader={format(createdAt, 'DD MMMM YYYY')}
+        title={label}
+      />
+      {/* <CardMedia image="./image.jpg" title="event" /> */}
       <CardContent>
         <Typography>Description</Typography>
       </CardContent>
       <CardContent>Members</CardContent>
     </StyledCard>
   );
+};
+
+Preview.propTypes = {
+  createdAt: PropTypes.string,
+  label: PropTypes.string,
 };
 
 export default Preview;
