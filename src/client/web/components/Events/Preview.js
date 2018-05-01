@@ -4,7 +4,7 @@ import Card, {
   CardHeader,
   CardMedia,
   CardContent,
-  CardActions,
+  // CardActions,
 } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 
