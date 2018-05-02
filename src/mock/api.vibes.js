@@ -1,4 +1,4 @@
-const { vibe } = require('trip-mock');
+const { vibe } = require('farso');
 const { path } = require('ramda');
 
 vibe.default(

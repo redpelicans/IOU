@@ -3353,6 +3353,19 @@ faker@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/faker/-/faker-4.1.0.tgz#1e45bbbecc6774b3c195fad2835109c6d748cc3f"
 
+farso@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/farso/-/farso-0.5.0.tgz#687f3ffe0d9eefc3418cdb4ec954635d9c12b360"
+  dependencies:
+    commander "^2.15.1"
+    cors "^2.8.4"
+    debug "^3.1.0"
+    express "^4.16.3"
+    glob "^7.1.2"
+    morgan "^1.9.0"
+    morgan-debug "^2.0.0"
+    ramda "^0.25.0"
+
 fast-deep-equal@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-1.0.0.tgz#96256a3bc975595eb36d82e9929d060d893439ff"
@@ -8312,19 +8325,6 @@ trim-newlines@^1.0.0:
 trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
-
-trip-mock@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/trip-mock/-/trip-mock-0.4.0.tgz#709b4743961bec42e0c7e8ef6e77ffb7cf8ece93"
-  dependencies:
-    commander "^2.15.1"
-    cors "^2.8.4"
-    debug "^3.1.0"
-    express "^4.16.3"
-    glob "^7.1.2"
-    morgan "^1.9.0"
-    morgan-debug "^2.0.0"
-    ramda "^0.25.0"
 
 tryer@^1.0.0:
   version "1.0.0"

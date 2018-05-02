@@ -50,7 +50,7 @@
     "styled-components": "^3.1.6"
   },
   "scripts": {
-    "start:mock": "DEBUG=trip* trip-server --config src/mock/trip.config.js",
+    "start:mock": "DEBUG=farso* farso-server --config src/mock/farso.config.js",
     "precommit": "lint-staged",
     "eslint-check":
       "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
@@ -92,7 +92,7 @@
     "lint-staged": "^7.0.5",
     "nodemon": "^1.14.12",
     "prettier": "1.12.1",
-    "trip-mock": "^0.4.0",
+    "farso": "^0.5.0",
     "url-search-params-polyfill": "^3.0.0",
     "webpack": "^3.10.0",
     "webpack-bundle-analyzer": "^2.10.0",
