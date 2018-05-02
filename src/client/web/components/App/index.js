@@ -5,7 +5,9 @@ import Events from '../Events';
 
 const Layout = styled.div``;
 
-const Content = styled.div``;
+const Content = styled.div`
+  ${'' /* margin: 10px; */};
+`;
 
 const App = () => {
   return (

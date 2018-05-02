@@ -9,7 +9,6 @@ const events = (state = initialState, action) => {
     case EVENTS_LOADED:
       return { ...state, events: action.payload.events };
     default: {
-      // console.log('action.type', action)
       return state;
     }
   }
