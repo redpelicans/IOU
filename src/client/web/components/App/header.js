@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import injectSheet from 'react-jss';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import Toolbar from 'material-ui/Toolbar';
@@ -7,17 +8,23 @@ import Typography from 'material-ui/Typography';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import History from '@material-ui/icons/History';
 
-const StyledTypography = styled(Typography)`
-  flex: 1;
-`;
+const style = {
+  typography: {
+    flex: 1,
+  },
+};
 
-const Header = () => {
+const Header = ({ classes }) => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <StyledTypography color="inherit" variant="title">
+        <Typography
+          className={classes.typography}
+          color="inherit"
+          variant="title"
+        >
           IOU by RedPelicans
-        </StyledTypography>
+        </Typography>
         <IconButton color="inherit">
           <History />
         </IconButton>
@@ -29,4 +36,8 @@ const Header = () => {
   );
 };
 
-export default Header;
+Header.propTypes = {
+  classes: PropTypes.object,
+};
+
+export default injectSheet(style)(Header);

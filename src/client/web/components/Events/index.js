@@ -1,32 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { compose } from 'recompose';
+import injectSheet from 'react-jss';
 import { map } from 'ramda';
 import { getEvents } from '../../selectors/events';
 import { getPeople } from '../../selectors/people';
 import Preview from './Preview';
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-content: space-between;
-`;
+const style = {
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    justifyContent: 'space-between',
+  },
+};
 
-const Events = ({ events, people }) => {
+const Events = ({ events, people, classes }) => {
   return (
-    <Grid>
+    <div className={classes.grid}>
       {map(
         ({ id, ...rest }) => <Preview key={id} people={people} {...rest} />,
         events,
       )}
-    </Grid>
+    </div>
   );
 };
 
 Events.propTypes = {
   events: PropTypes.array,
   people: PropTypes.array,
+  classes: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
@@ -34,4 +38,4 @@ const mapStateToProps = state => ({
   people: getPeople(state),
 });
 
-export default connect(mapStateToProps)(Events);
+export default compose(connect(mapStateToProps), injectSheet(style))(Events);

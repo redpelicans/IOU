@@ -40,6 +40,7 @@
     "react-dom": "^16.2.0",
     "react-google-login": "^3.0.4",
     "react-intl": "^2.4.0",
+    "react-jss": "^8.4.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-test-renderer": "^16.2.0",
@@ -49,7 +50,6 @@
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
     "style-loader": "^0.21.0",
-    "styled-components": "^3.1.6",
     "url-loader": "^1.0.1"
   },
   "scripts": {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import { isEmpty, map, take } from 'ramda';
-import styled from 'styled-components';
+import injectSheet from 'react-jss';
 import Avatar from 'material-ui/Avatar';
 import Card, {
   CardHeader,
@@ -11,49 +11,60 @@ import Card, {
   // CardActions,
 } from 'material-ui/Card';
 import Chip from 'material-ui/Chip';
+import GridList, { GridListTile, GridListTileBar } from 'material-ui/GridList';
 import Typography from 'material-ui/Typography';
 import { getPerson } from '../../selectors/people';
 
 const initials = ({ firstname, lastname }) =>
   `${take(1, firstname)} ${take(1, lastname)}`;
 
-const StyledCard = styled(Card)`
-  margin: 10px;
-`;
+const style = {
+  card: {
+    margin: 10,
+  },
+  cardMedia: {
+    paddingTop: '56.25%',
+  },
+  gridList: {
+    flexWrap: 'nowrap',
+  },
+};
 
-const StyledCardMedia = styled(CardMedia)`
-  padding-top: 56.25%;
-`;
+const Preview = ({ attendeeIds, createdAt, label, people, classes }) => {
+  const gridList = {
+    flexWrap: 'nowrap',
+  };
 
-const StyledCardContent = styled(CardContent)`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-`;
-
-const Preview = ({ attendeeIds, createdAt, label, people }) => {
   return (
-    <StyledCard>
+    <Card className={classes.card}>
       <CardHeader
         avatar="R"
         subheader={format(createdAt, 'DD MMMM YYYY')}
         title={label}
       />
-      <StyledCardMedia
+      <CardMedia
+        className={classes.cardMedia}
         image={
           'https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
         }
         title="event"
       />
-      <StyledCardContent>
+      <CardContent>
         {!isEmpty(people) &&
-          !isEmpty(attendeeIds) &&
-          map(
-            id => <Avatar key={id}>{initials(getPerson(id, people))}</Avatar>,
-            attendeeIds,
+          !isEmpty(attendeeIds) && (
+            <GridList className={classes.gridList}>
+              {map(
+                id => (
+                  <GridListTile key={id}>
+                    <Avatar key={id}>{initials(getPerson(id, people))}</Avatar>
+                  </GridListTile>
+                ),
+                attendeeIds,
+              )}
+            </GridList>
           )}
-      </StyledCardContent>
-    </StyledCard>
+      </CardContent>
+    </Card>
   );
 };
 
@@ -62,6 +73,7 @@ Preview.propTypes = {
   createdAt: PropTypes.string,
   label: PropTypes.string,
   people: PropTypes.array,
+  classes: PropTypes.object,
 };
 
-export default Preview;
+export default injectSheet(style)(Preview);
