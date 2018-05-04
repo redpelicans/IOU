@@ -19,6 +19,10 @@ const initials = ({ firstname, lastname }) =>
   `${take(1, firstname)} ${take(1, lastname)}`;
 
 const style = {
+  avatar: {
+    width: 50,
+    height: 50,
+  },
   card: {
     margin: 10,
   },
@@ -55,8 +59,10 @@ const Preview = ({ attendeeIds, createdAt, label, people, classes }) => {
             <GridList className={classes.gridList}>
               {map(
                 id => (
-                  <GridListTile key={id}>
-                    <Avatar key={id}>{initials(getPerson(id, people))}</Avatar>
+                  <GridListTile cols={0.5} rows={0.3} key={id}>
+                    <Avatar className={classes.avatar} key={id}>
+                      {initials(getPerson(id, people))}
+                    </Avatar>
                   </GridListTile>
                 ),
                 attendeeIds,
