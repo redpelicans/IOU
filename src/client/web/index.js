@@ -9,7 +9,7 @@ import { loadEvents } from './actions/events';
 import { loadPeople } from './actions/people';
 import App from './components/App';
 
-const store = createStore(reducer, applyMiddleware(createLogger, thunk));
+const store = createStore(reducer, applyMiddleware(thunk, createLogger));
 
 store.dispatch(loadEvents());
 store.dispatch(loadPeople());
