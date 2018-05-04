@@ -4,15 +4,8 @@ import { format } from 'date-fns';
 import { isEmpty, map, take } from 'ramda';
 import injectSheet from 'react-jss';
 import Avatar from 'material-ui/Avatar';
-import Card, {
-  CardHeader,
-  CardMedia,
-  CardContent,
-  // CardActions,
-} from 'material-ui/Card';
-import Chip from 'material-ui/Chip';
-import GridList, { GridListTile, GridListTileBar } from 'material-ui/GridList';
-import Typography from 'material-ui/Typography';
+import Card, { CardHeader, CardMedia, CardContent } from 'material-ui/Card';
+import GridList, { GridListTile } from 'material-ui/GridList';
 import { getPerson } from '../../selectors/people';
 
 const initials = ({ firstname, lastname }) =>
@@ -35,10 +28,6 @@ const style = {
 };
 
 const Preview = ({ attendeeIds, createdAt, label, people, classes }) => {
-  const gridList = {
-    flexWrap: 'nowrap',
-  };
-
   return (
     <Card className={classes.card}>
       <CardHeader
