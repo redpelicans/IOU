@@ -8,7 +8,7 @@ export const loadEvents = () => dispatch => {
   })
     .then(data => dispatch(eventsLoaded(data)))
     /* eslint-disable no-console */
-    .catch(() => console.log('events:load ERROR'));
+    .catch(() => alert('events:load ERROR'));
   /* eslint-enable no-console */
 };
 

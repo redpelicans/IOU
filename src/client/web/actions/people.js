@@ -8,7 +8,7 @@ export const loadPeople = () => dispatch => {
   })
     .then(data => dispatch(peopleLoaded(data)))
     /* eslint-disable no-console */
-    .catch(() => console.log('people:load ERROR'));
+    .catch(() => alert('people:load ERROR'));
   /* eslint-enable no-console */
 };
 
