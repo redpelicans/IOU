@@ -27,7 +27,7 @@ const style = {
   },
 };
 
-const Preview = ({ attendeeIds, createdAt, label, people, classes }) => {
+const Preview = ({ attendeeIds, createdAt, label, image, people, classes }) => {
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -35,13 +35,7 @@ const Preview = ({ attendeeIds, createdAt, label, people, classes }) => {
         subheader={format(createdAt, 'DD MMMM YYYY')}
         title={label}
       />
-      <CardMedia
-        className={classes.cardMedia}
-        image={
-          'https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
-        }
-        title="event"
-      />
+      <CardMedia className={classes.cardMedia} image={image} title="event" />
       <CardContent>
         {!isEmpty(people) &&
           !isEmpty(attendeeIds) && (
@@ -67,6 +61,7 @@ Preview.propTypes = {
   attendeeIds: PropTypes.array,
   createdAt: PropTypes.string,
   label: PropTypes.string,
+  image: PropTypes.string,
   people: PropTypes.array,
   classes: PropTypes.object,
 };
