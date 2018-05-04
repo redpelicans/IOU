@@ -1,10 +1,12 @@
-import axios from 'axios';
+import { requestJson } from './utils';
 
 export const LOAD_EVENTS = 'events:load';
 export const loadEvents = () => dispatch => {
-  axios
-    .get('http://localhost:8181/api/events')
-    .then(({ data }) => dispatch(eventsLoaded(data)))
+  requestJson({
+    method: 'GET',
+    url: '/api/events',
+  })
+    .then(data => dispatch(eventsLoaded(data)))
     /* eslint-disable no-console */
     .catch(() => console.log('events:load ERROR'));
   /* eslint-enable no-console */
