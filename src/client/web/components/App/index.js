@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { map, values } from 'ramda';
-import routes from '../../routes';
+import routes, { defaultRoute } from '../../routes';
 import Header from './header';
 import Events from '../Events';
 
@@ -22,6 +22,7 @@ const App = () => {
             ),
             values(routes),
           )}
+          <Route path="/" component={defaultRoute.component} />
         </Switch>
       </div>
     </div>
