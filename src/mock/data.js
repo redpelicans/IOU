@@ -20,6 +20,7 @@ const Event = () => ({
   attendeeIds: compose(uniq, map(prop('id')))(
     times(getRandom(people), random(0, 10)),
   ),
+  image: faker.image.image(),
   currency: 'EUR',
   createdAt: faker.date.past(),
 });
