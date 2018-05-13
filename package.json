@@ -32,6 +32,7 @@
     "material-ui": "^1.0.0-beta.44",
     "postcss-flexbugs-fixes": "^3.3.0",
     "postcss-loader": "^2.1.4",
+    "promise": "^8.0.1",
     "prop-types": "^15.5.10",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
