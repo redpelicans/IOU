@@ -9,7 +9,8 @@ import AddIcon from '@material-ui/icons/Add';
 import { getEvents } from '../../selectors/events';
 import { getPeople } from '../../selectors/people';
 import Preview from './Preview';
-import EventForm from '../../forms/Event';
+import ModalEventForm from '../widgets/ModalEventForm';
+import { addEvent } from '../../actions/events';
 
 const style = {
   icon: {
@@ -24,10 +25,18 @@ const style = {
   },
 };
 
-const Events = ({ events, people, open, handleOpen, handleClose, classes }) => {
+const Events = ({
+  events,
+  people,
+  open,
+  handleOpen,
+  handleClose,
+  classes,
+  addEvent,
+}) => {
   return (
     <div>
-      <EventForm open={open} handleClose={handleClose} />
+      <ModalEventForm open={open} reject={handleClose} accept={addEvent} />
       <div className={classes.grid}>
         {map(
           ({ id, ...rest }) => <Preview key={id} people={people} {...rest} />,
@@ -53,6 +62,7 @@ Events.propTypes = {
   handleOpen: PropTypes.func,
   handleClose: PropTypes.func,
   classes: PropTypes.object,
+  addEvent: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -60,8 +70,12 @@ const mapStateToProps = state => ({
   people: getPeople(state),
 });
 
+const mapDispatchToProps = {
+  addEvent,
+};
+
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   injectSheet(style),
   withStateHandlers(
     {

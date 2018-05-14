@@ -19,6 +19,7 @@ vibe.default(
     mock('events:list').reply([200, events]);
     mock('people:list').reply([200, people]);
     mock('event:add').reply((req, res) => {
+      console.log('req', req.body);
       const id = faker.random.uuid();
       const newEvent = {
         attendeeIds: [],

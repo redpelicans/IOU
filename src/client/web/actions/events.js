@@ -17,3 +17,17 @@ export const eventsLoaded = events => ({
   type: EVENTS_LOADED,
   payload: { events },
 });
+
+export const ADD_EVENT = 'event:add';
+export const addEvent = data => dispatch => {
+  console.log(data);
+  requestJson({
+    method: 'POST',
+    url: '/api/events',
+    body: data,
+  })
+    .then(data => console.log(data))
+    /* eslint-disable no-console */
+    .catch(() => alert('events:add ERROR'));
+  /* eslint-enable no-console */
+};
