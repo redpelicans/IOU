@@ -19,19 +19,26 @@ const styles = {
   },
 };
 
-const EventForm = ({ accept, reject, classes }) => {
+const EventForm = ({ accept, handleClose, classes }) => {
   return (
     <Formik
       initialValues={{
-        name: 'Default',
-        currency: '',
+        name: '',
+        currency: 'EUR',
       }}
-      onSubmit={({ values }) => accept()}
-      render={({ values, handleChange }) => (
-        <form>
+      onSubmit={({ values }) => {
+        accept({ label: 'Nouvel Event' });
+        handleClose();
+      }}
+      render={({ values, handleChange, handleSubmit, submitForm }) => (
+        <form onSubmit={handleSubmit}>
           <AppBar className={classes.appBar}>
             <Toolbar>
-              <IconButton color="inherit" aria-label="Close" onClick={reject}>
+              <IconButton
+                color="inherit"
+                aria-label="Close"
+                onClick={handleClose}
+              >
                 <CloseIcon />
               </IconButton>
               <Typography
@@ -41,10 +48,7 @@ const EventForm = ({ accept, reject, classes }) => {
               >
                 Add New Event
               </Typography>
-              <Button
-                color="inherit"
-                onClick={() => accept({ label: 'Nouvel Event' })}
-              >
+              <Button color="inherit" type="submit">
                 save
               </Button>
             </Toolbar>
@@ -58,8 +62,7 @@ const EventForm = ({ accept, reject, classes }) => {
 
 EventForm.propTypes = {
   accept: PropTypes.func,
-  reject: PropTypes.func,
-  handleChange: PropTypes.func,
+  handleClose: PropTypes.func,
   classes: PropTypes.object,
 };
 
