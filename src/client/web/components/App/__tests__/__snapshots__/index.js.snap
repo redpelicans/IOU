@@ -4,7 +4,23 @@ exports[`App should match snapshot 1`] = `
 <div>
   <Jss(Header) />
   <div>
-    <Connect(Jss(Events)) />
+    <Switch>
+      <Route
+        exact={true}
+        key="/about"
+        path="/about"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        key="/events"
+        path="/events"
+      />
+      <Route
+        component={[Function]}
+        path="/"
+      />
+    </Switch>
   </div>
 </div>
 `;
