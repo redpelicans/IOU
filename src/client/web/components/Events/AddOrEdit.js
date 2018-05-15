@@ -24,9 +24,10 @@ const AddOrEdit = () => {
 
   return (
     <div>
-      <Field id="name" name="name" component={InputField} />
+      <Field id="name" label="Name" name="name" component={InputField} />
       <Field
         id="currency"
+        label="currency"
         name="currency"
         domainValues={currencies}
         component={SelectField}

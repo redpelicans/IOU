@@ -36,7 +36,7 @@ const Events = ({
 }) => {
   return (
     <div>
-      <ModalEventForm open={open} reject={handleClose} accept={addEvent} />
+      <ModalEventForm open={open} accept={addEvent} handleClose={handleClose} />
       <div className={classes.grid}>
         {map(
           ({ id, ...rest }) => <Preview key={id} people={people} {...rest} />,

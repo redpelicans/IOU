@@ -5,7 +5,6 @@ const [host, port] = ['localhost', 8181];
 
 export const requestJson = ({ method, url, body, headers }) => {
   const path = `http://${host}:${port}${url}`;
-  console.log('body', body);
   return axios({
     method: method,
     url: path,
