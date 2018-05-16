@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { map, values } from 'ramda';
 import routes, { defaultRoute } from '../../routes';
 import Header from './header';
-import Events from '../Events';
+import Events from '../../pages/Events';
 
 const App = () => {
   return (

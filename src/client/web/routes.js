@@ -1,5 +1,5 @@
 import { find, prop, values } from 'ramda';
-import Events from './components/Events';
+import Events from './pages/Events';
 
 const routes = {
   about: {

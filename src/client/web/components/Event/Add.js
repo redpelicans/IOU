@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 import Button from 'material-ui/Button';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -19,19 +19,34 @@ const styles = {
   },
 };
 
-const EventForm = ({ accept, handleClose, classes }) => {
+const Add = ({ addEvent, handleClose, classes }) => {
   return (
     <Formik
       initialValues={{
-        name: '',
+        label: '',
         currency: 'EUR',
+        people: [],
+        img: '',
       }}
-      onSubmit={({ values }) => {
-        accept({ label: 'Nouvel Event' });
+      validate={values => {
+        let errors = {};
+
+        if (!values.label) {
+          errors.label = 'Required';
+        }
+
+        return errors;
+      }}
+      onSubmit={({ label }) => {
+        const newEvent = {
+          label: label,
+        };
+
+        addEvent(newEvent);
         handleClose();
       }}
-      render={({ values, handleChange, handleSubmit, submitForm }) => (
-        <form onSubmit={handleSubmit}>
+      render={() => (
+        <Form>
           <AppBar className={classes.appBar}>
             <Toolbar>
               <IconButton
@@ -53,17 +68,17 @@ const EventForm = ({ accept, handleClose, classes }) => {
               </Button>
             </Toolbar>
           </AppBar>
-          <AddOrEdit handleChange={handleChange} values={values} />
-        </form>
+          <AddOrEdit />
+        </Form>
       )}
     />
   );
 };
 
-EventForm.propTypes = {
-  accept: PropTypes.func,
+Add.propTypes = {
+  addEvent: PropTypes.func,
   handleClose: PropTypes.func,
   classes: PropTypes.object,
 };
 
-export default injectSheet(styles)(EventForm);
+export default injectSheet(styles)(Add);

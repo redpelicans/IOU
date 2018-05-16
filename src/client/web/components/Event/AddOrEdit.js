@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field } from 'formik';
-import { InputField, SelectField } from '../../fields';
+import { InputField, SelectField, SelectPeople } from '../../fields';
 
 const AddOrEdit = () => {
   const currencies = [
@@ -24,14 +24,15 @@ const AddOrEdit = () => {
 
   return (
     <div>
-      <Field id="name" label="Name" name="name" component={InputField} />
-      <Field
+      <Field id="label" label="Name" name="label" component={InputField} />
+      <Field id="people" name="people" component={SelectPeople} />
+      {/* <Field
         id="currency"
         label="currency"
         name="currency"
         domainValues={currencies}
         component={SelectField}
-      />
+      /> */}
     </div>
   );
 };
