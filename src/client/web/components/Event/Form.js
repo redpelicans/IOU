@@ -6,6 +6,7 @@ import Add from './Add';
 const Form = ({ isOpen, addEvent, handleClose }) => {
   return (
     <Dialog
+      fullScreen
       disableBackdropClick
       disableEscapeKeyDown
       open={isOpen}
