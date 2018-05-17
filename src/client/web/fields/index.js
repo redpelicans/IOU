@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { isEmpty } from 'ramda';
 import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -14,10 +15,11 @@ export const InputField = ({ id, label, field, form, classes }) => {
 
   return (
     <TextField
+      error={!isEmpty(errors.label) && errors.label !== undefined}
+      helperText={errors.label}
       id={id}
       label={label}
       className={classes.input}
-      required={errors[field.name]}
       {...field}
     />
   );
@@ -31,11 +33,16 @@ InputField.propTypes = {
   classes: PropTypes.object,
 };
 
-export const SelectField = ({ label, name, field, domainValues, classes }) => {
+export const SelectField = ({ label, field, domainValues, classes }) => {
   return (
     <FormControl htmlFor={label} className={classes.formControl}>
       <InputLabel htmlFor="age-simple">{label}</InputLabel>
-      <Select input={<Input id={label} />} {...field}>
+      <Select
+        input={<Input id={label} />}
+        value={field.value}
+        name={field.name}
+        onChange={field.onChange}
+      >
         {domainValues.map(({ label, value }) => (
           <MenuItem key={label} value={value}>
             {label}
@@ -48,7 +55,6 @@ export const SelectField = ({ label, name, field, domainValues, classes }) => {
 
 SelectField.propTypes = {
   label: PropTypes.string,
-  name: PropTypes.string,
   field: PropTypes.object,
   domainValues: PropTypes.array,
   classes: PropTypes.object,
@@ -59,11 +65,17 @@ const mapStateToProps = state => ({
 });
 
 export const SelectPeople = connect(mapStateToProps)(
-  ({ id, people, field, classes }) => {
+  ({ people, field, classes }) => {
     return (
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="people">People</InputLabel>
-        <Select multiple input={<Input id="people" />} {...field}>
+        <Select
+          multiple
+          input={<Input id="people" />}
+          value={field.value}
+          name={field.name}
+          onChange={field.onChange}
+        >
           {people.map(({ id, name }) => (
             <MenuItem key={id} value={id}>
               {name}

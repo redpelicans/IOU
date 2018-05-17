@@ -25,7 +25,7 @@ const AddOrEdit = ({ classes }) => {
   ];
 
   return (
-    <Form className={classes.container}>
+    <Form className={classes.form}>
       <Field
         id="label"
         label="Name"

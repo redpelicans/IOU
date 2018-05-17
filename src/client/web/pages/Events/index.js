@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { compose, withStateHandlers } from 'recompose';
 import injectSheet from 'react-jss';

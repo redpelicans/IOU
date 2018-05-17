@@ -15,12 +15,14 @@ const styles = {
   flex: {
     flex: 1,
   },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
   input: {
     margin: 5,
+  },
+  form: {
+    display: 'grid',
+    gridTemplateColumns: 'auto',
+    gridTemplateRows: 'auto',
+    gridTemplateAreas: "'label' 'currency' 'people'",
   },
   formControl: {
     margin: 5,
@@ -37,15 +39,15 @@ const Add = ({ addEvent, handleClose, classes }) => {
         attendeeIds: [],
         img: '',
       }}
-      // validate={values => {
-      //   let errors = {};
-      //
-      //   if (!values.label) {
-      //     errors.label = 'Required';
-      //   }
-      //
-      //   return errors;
-      // }}
+      validate={values => {
+        let errors = {};
+
+        if (!values.label) {
+          errors.label = 'Name is required';
+        }
+
+        return errors;
+      }}
       onSubmit={values => {
         const newEvent = {
           ...values,
