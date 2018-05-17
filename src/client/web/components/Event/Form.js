@@ -1,22 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dialog from 'material-ui/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
+import Dialog from '@material-ui/core/Dialog';
 import Add from './Add';
-// import EventFormEdit from '../Events/Edit';
 
-const Form = ({ open, addEvent, handleClose }) => {
+const Form = ({ isOpen, addEvent, handleClose }) => {
   return (
-    <Dialog open={open}>
-      <DialogContent>
-        <Add addEvent={addEvent} handleClose={handleClose} />
-      </DialogContent>
+    <Dialog
+      disableBackdropClick
+      disableEscapeKeyDown
+      open={isOpen}
+      onClose={handleClose}
+    >
+      <Add addEvent={addEvent} handleClose={handleClose} />
     </Dialog>
   );
 };
 
 Form.propTypes = {
-  open: PropTypes.bool,
+  isOpen: PropTypes.bool,
   addEvent: PropTypes.func,
   handleClose: PropTypes.func,
 };

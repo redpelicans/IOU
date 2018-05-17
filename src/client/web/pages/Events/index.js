@@ -34,11 +34,11 @@ export default compose(
   injectSheet(style),
   withStateHandlers(
     {
-      open: false,
+      isOpen: false,
     },
     {
-      handleOpen: () => () => ({ open: true }),
-      handleClose: () => () => ({ open: false }),
+      handleOpen: () => () => ({ isOpen: true }),
+      handleClose: () => () => ({ isOpen: false }),
     },
   ),
 )(Events);

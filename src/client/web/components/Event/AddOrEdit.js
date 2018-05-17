@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Form } from 'formik';
 import { Field } from 'formik';
 import { InputField, SelectField, SelectPeople } from '../../fields';
 
-const AddOrEdit = () => {
+const AddOrEdit = ({ classes }) => {
   const currencies = [
     {
       value: 'USD',
@@ -23,18 +25,34 @@ const AddOrEdit = () => {
   ];
 
   return (
-    <div>
-      <Field id="label" label="Name" name="label" component={InputField} />
-      <Field id="people" name="people" component={SelectPeople} />
-      {/* <Field
+    <Form className={classes.container}>
+      <Field
+        id="label"
+        label="Name"
+        name="label"
+        classes={classes}
+        component={InputField}
+      />
+      <Field
         id="currency"
-        label="currency"
+        label="Currency"
         name="currency"
         domainValues={currencies}
+        classes={classes}
         component={SelectField}
-      /> */}
-    </div>
+      />
+      <Field
+        id="attendeeIds"
+        name="attendeeIds"
+        classes={classes}
+        component={SelectPeople}
+      />
+    </Form>
   );
+};
+
+AddOrEdit.propTypes = {
+  classes: PropTypes.object,
 };
 
 export default AddOrEdit;

@@ -24,8 +24,8 @@ vibe.default(
         id,
         attendeeIds: [],
         currency: 'EUR',
-        image: faker.image.image(),
         ...req.body,
+        image: faker.image.image(),
         createdAt: new Date(),
       };
       events.push(newEvent);

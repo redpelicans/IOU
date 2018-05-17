@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
-import { Formik, Form } from 'formik';
+import { Formik } from 'formik';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from 'material-ui/Button';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import IconButton from 'material-ui/IconButton';
-import Typography from 'material-ui/Typography';
-import CloseIcon from '@material-ui/icons/Close';
 import AddOrEdit from './AddOrEdit';
 
 const styles = {
@@ -17,6 +15,17 @@ const styles = {
   flex: {
     flex: 1,
   },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  input: {
+    margin: 5,
+  },
+  formControl: {
+    margin: 5,
+    minWidth: 120,
+  },
 };
 
 const Add = ({ addEvent, handleClose, classes }) => {
@@ -25,51 +34,41 @@ const Add = ({ addEvent, handleClose, classes }) => {
       initialValues={{
         label: '',
         currency: 'EUR',
-        people: [],
+        attendeeIds: [],
         img: '',
       }}
-      validate={values => {
-        let errors = {};
-
-        if (!values.label) {
-          errors.label = 'Required';
-        }
-
-        return errors;
-      }}
-      onSubmit={({ label }) => {
+      // validate={values => {
+      //   let errors = {};
+      //
+      //   if (!values.label) {
+      //     errors.label = 'Required';
+      //   }
+      //
+      //   return errors;
+      // }}
+      onSubmit={values => {
         const newEvent = {
-          label: label,
+          ...values,
         };
 
         addEvent(newEvent);
         handleClose();
       }}
-      render={() => (
-        <Form>
-          <AppBar className={classes.appBar}>
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="Close"
-                onClick={handleClose}
-              >
-                <CloseIcon />
-              </IconButton>
-              <Typography
-                variant="title"
-                color="inherit"
-                className={classes.flex}
-              >
-                Add New Event
-              </Typography>
-              <Button color="inherit" type="submit">
-                save
-              </Button>
-            </Toolbar>
-          </AppBar>
-          <AddOrEdit />
-        </Form>
+      render={({ handleSubmit }) => (
+        <Fragment>
+          <DialogTitle>Fill the form</DialogTitle>
+          <DialogContent>
+            <AddOrEdit classes={classes} />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit} color="primary">
+              Ok
+            </Button>
+          </DialogActions>
+        </Fragment>
       )}
     />
   );

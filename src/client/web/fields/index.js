@@ -9,11 +9,17 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { getSelectPeople } from '../selectors/people';
 
-export const InputField = ({ id, label, field, form }) => {
+export const InputField = ({ id, label, field, form, classes }) => {
   const { errors } = form;
 
   return (
-    <TextField id={id} label={label} required={errors[field.name]} {...field} />
+    <TextField
+      id={id}
+      label={label}
+      className={classes.input}
+      required={errors[field.name]}
+      {...field}
+    />
   );
 };
 
@@ -22,30 +28,30 @@ InputField.propTypes = {
   label: PropTypes.string,
   field: PropTypes.object,
   form: PropTypes.object,
+  classes: PropTypes.object,
 };
 
-export const SelectField = ({ id, domainValues, field }) => {
+export const SelectField = ({ label, name, field, domainValues, classes }) => {
   return (
-    <TextField
-      select
-      id={id}
-      helperText="Please select your currency"
-      margin="normal"
-      {...field}
-    >
-      {domainValues.map(option => (
-        <MenuItem key={option.value} value={option.value}>
-          {option.label}
-        </MenuItem>
-      ))}
-    </TextField>
+    <FormControl htmlFor={label} className={classes.formControl}>
+      <InputLabel htmlFor="age-simple">{label}</InputLabel>
+      <Select input={<Input id={label} />} {...field}>
+        {domainValues.map(({ label, value }) => (
+          <MenuItem key={label} value={value}>
+            {label}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 };
 
 SelectField.propTypes = {
-  id: PropTypes.string,
-  domainValues: PropTypes.array,
+  label: PropTypes.string,
+  name: PropTypes.string,
   field: PropTypes.object,
+  domainValues: PropTypes.array,
+  classes: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
@@ -53,27 +59,11 @@ const mapStateToProps = state => ({
 });
 
 export const SelectPeople = connect(mapStateToProps)(
-  ({ id, people, field }) => {
-    const ITEM_HEIGHT = 48;
-    const ITEM_PADDING_TOP = 8;
-    const MenuProps = {
-      PaperProps: {
-        style: {
-          maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-          width: 250,
-        },
-      },
-    };
-
+  ({ id, people, field, classes }) => {
     return (
-      <FormControl>
-        <InputLabel htmlFor="select-multiple">People</InputLabel>
-        <Select
-          multiple
-          input={<Input id="select-multiple" />}
-          MenuProps={MenuProps}
-          {...field}
-        >
+      <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="people">People</InputLabel>
+        <Select multiple input={<Input id="people" />} {...field}>
           {people.map(({ id, name }) => (
             <MenuItem key={id} value={id}>
               {name}
@@ -89,4 +79,5 @@ SelectPeople.propTypes = {
   id: PropTypes.string,
   people: PropTypes.array,
   field: PropTypes.object,
+  classes: PropTypes.object,
 };

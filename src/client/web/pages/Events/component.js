@@ -9,7 +9,7 @@ import Form from '../../components/Event/Form';
 const Events = ({
   events,
   people,
-  open,
+  isOpen,
   handleOpen,
   handleClose,
   classes,
@@ -17,7 +17,7 @@ const Events = ({
 }) => {
   return (
     <div>
-      <Form open={open} addEvent={addEvent} handleClose={handleClose} />
+      <Form isOpen={isOpen} addEvent={addEvent} handleClose={handleClose} />
       <div className={classes.grid}>
         {map(
           event => <Preview key={event.id} people={people} {...event} />,
@@ -37,13 +37,13 @@ const Events = ({
 };
 
 Events.propTypes = {
-  events: PropTypes.array,
-  people: PropTypes.array,
-  open: PropTypes.bool,
-  handleOpen: PropTypes.func,
-  handleClose: PropTypes.func,
+  events: PropTypes.array.isRequired,
+  people: PropTypes.array.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  handleOpen: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  addEvent: PropTypes.func.isRequired,
   classes: PropTypes.object,
-  addEvent: PropTypes.func,
 };
 
 export default Events;
