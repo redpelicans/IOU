@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { map } from 'ramda';
-import IconButton from 'material-ui/IconButton';
+import Button from 'material-ui/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Preview from '../../components/Event/Preview';
 import Form from '../../components/Event/Form';
@@ -24,14 +24,24 @@ const Events = ({
           events,
         )}
       </div>
-      <IconButton
+      {/* <IconButton
         className={classes.icon}
         color="secondary"
+        variant="raised"
         style={{ fontSize: 50 }}
         onClick={handleOpen}
       >
         <AddIcon />
-      </IconButton>
+      </IconButton> */}
+      <Button
+        variant="fab"
+        color="secondary"
+        aria-label="add"
+        className={classes.icon}
+        onClick={handleOpen}
+      >
+        <AddIcon />
+      </Button>
     </div>
   );
 };

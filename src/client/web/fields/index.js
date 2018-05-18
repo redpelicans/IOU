@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { isEmpty } from 'ramda';
 import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,11 +10,11 @@ import Select from '@material-ui/core/Select';
 import { getSelectPeople } from '../selectors/people';
 
 export const InputField = ({ id, label, field, form, classes }) => {
-  const { errors } = form;
+  const { errors, touched } = form;
 
   return (
     <TextField
-      error={!isEmpty(errors.label) && errors.label !== undefined}
+      error={errors.label && touched.label}
       helperText={errors.label}
       id={id}
       label={label}

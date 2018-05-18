@@ -10,7 +10,7 @@ const style = {
   icon: {
     position: 'fixed',
     top: '90vh',
-    left: '94vw',
+    left: '90vw',
   },
   grid: {
     display: 'grid',
