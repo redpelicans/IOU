@@ -5,34 +5,44 @@ import Button from 'material-ui/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Preview from '../../components/Event/Preview';
 import Form from '../../components/Event/Form';
+import { getEvent } from '../../selectors/events';
 
 const Events = ({
   events,
   people,
   isOpen,
+  id,
   handleOpen,
   handleClose,
+  setId,
   classes,
   addEvent,
+  updateEvent,
+  deleteEvent,
 }) => {
   return (
     <div>
-      <Form isOpen={isOpen} addEvent={addEvent} handleClose={handleClose} />
+      <Form
+        isOpen={isOpen}
+        event={getEvent(id, events)}
+        addEvent={addEvent}
+        updateEvent={updateEvent}
+        handleClose={handleClose}
+      />
       <div className={classes.grid}>
         {map(
-          event => <Preview key={event.id} people={people} {...event} />,
+          event => (
+            <Preview
+              key={event.id}
+              people={people}
+              deleteEvent={deleteEvent}
+              {...event}
+              setId={setId}
+            />
+          ),
           events,
         )}
       </div>
-      {/* <IconButton
-        className={classes.icon}
-        color="secondary"
-        variant="raised"
-        style={{ fontSize: 50 }}
-        onClick={handleOpen}
-      >
-        <AddIcon />
-      </IconButton> */}
       <Button
         variant="fab"
         color="secondary"
@@ -53,7 +63,11 @@ Events.propTypes = {
   handleOpen: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
   addEvent: PropTypes.func.isRequired,
+  updateEvent: PropTypes.func.isRequired,
+  deleteEvent: PropTypes.func.isRequired,
   classes: PropTypes.object,
+  id: PropTypes.string,
+  setId: PropTypes.func,
 };
 
 export default Events;

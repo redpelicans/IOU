@@ -1,6 +1,6 @@
 const { vibe } = require('farso');
 const faker = require('faker');
-const { findIndex, propEq, find, path } = require('ramda');
+const { findIndex, propEq, find, path, remove, filter } = require('ramda');
 
 vibe.default(
   'Main',
@@ -16,7 +16,9 @@ vibe.default(
       },
     },
   ) => {
-    mock('events:list').reply([200, events]);
+    mock('events:list').reply((req, res) =>
+      res.send(filter(event => !event.deleted, events)),
+    );
     mock('people:list').reply([200, people]);
     mock('event:add').reply((req, res) => {
       const id = faker.random.uuid();
@@ -42,6 +44,14 @@ vibe.default(
     mock('event:get').reply((req, res) => {
       const { id } = req.params;
       res.json(find(propEq('id', id), events));
+    });
+    mock('event:delete').reply((req, res) => {
+      const updates = req.body;
+      const index = findIndex(propEq('id', req.params.id), events);
+      if (index === -1) return res.sendStatus(404);
+      const updatedEvent = { ...events[index], deleted: true };
+      events[index] = updatedEvent;
+      res.json(updatedEvent);
     });
   },
 );
