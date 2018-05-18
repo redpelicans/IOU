@@ -21,10 +21,11 @@ vibe.default(
     mock('event:add').reply((req, res) => {
       const id = faker.random.uuid();
       const newEvent = {
+        id,
         attendeeIds: [],
         currency: 'EUR',
         ...req.body,
-        id,
+        image: faker.image.image(),
         createdAt: new Date(),
       };
       events.push(newEvent);
