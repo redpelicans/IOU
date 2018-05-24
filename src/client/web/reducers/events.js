@@ -27,7 +27,14 @@ const events = (state = initialState, action) => {
         ),
       };
     case EVENT_DELETED:
-      return { ...state, events: remove(action.payload.id, 1, state.events) };
+      return {
+        ...state,
+        events: remove(
+          findIndex(propEq('id', action.payload.id), state.events),
+          1,
+          state.events,
+        ),
+      };
     default: {
       return state;
     }

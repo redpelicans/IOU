@@ -61,7 +61,7 @@ export const deleteEvent = id => dispatch => {
 };
 
 export const EVENT_DELETED = 'event:deleted';
-export const eventDeleted = id => ({
+export const eventDeleted = ({ id }) => ({
   type: EVENT_DELETED,
   payload: { id },
 });
