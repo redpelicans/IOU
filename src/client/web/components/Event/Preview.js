@@ -27,7 +27,15 @@ const style = {
   },
 };
 
-const Preview = ({ attendeeIds, createdAt, label, image, people, classes }) => {
+const Preview = ({
+  id,
+  attendeeIds,
+  createdAt,
+  label,
+  image,
+  people,
+  classes,
+}) => {
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -58,6 +66,7 @@ const Preview = ({ attendeeIds, createdAt, label, image, people, classes }) => {
 };
 
 Preview.propTypes = {
+  id: PropTypes.string,
   attendeeIds: PropTypes.array,
   createdAt: PropTypes.string,
   label: PropTypes.string,

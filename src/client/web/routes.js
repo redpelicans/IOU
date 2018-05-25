@@ -1,10 +1,12 @@
 import { find, prop, values } from 'ramda';
 import Events from './pages/Events';
+import View from './components/Event/View';
 
 const routes = {
   about: {
     exact: true,
     path: '/about',
+    component: View,
   },
   events: {
     exact: true,
