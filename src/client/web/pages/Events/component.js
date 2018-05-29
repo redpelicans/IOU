@@ -14,13 +14,21 @@ const Events = ({
   handleClose,
   classes,
   addEvent,
+  history,
 }) => {
   return (
     <div>
       <Form isOpen={isOpen} addEvent={addEvent} handleClose={handleClose} />
       <div className={classes.grid}>
         {map(
-          event => <Preview key={event.id} people={people} {...event} />,
+          event => (
+            <Preview
+              key={event.id}
+              people={people}
+              history={history}
+              {...event}
+            />
+          ),
           events,
         )}
       </div>
@@ -54,6 +62,7 @@ Events.propTypes = {
   handleClose: PropTypes.func.isRequired,
   addEvent: PropTypes.func.isRequired,
   classes: PropTypes.object,
+  history: PropTypes.object,
 };
 
 export default Events;

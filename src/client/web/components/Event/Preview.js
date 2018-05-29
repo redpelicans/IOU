@@ -27,9 +27,18 @@ const style = {
   },
 };
 
-const Preview = ({ attendeeIds, createdAt, label, image, people, classes }) => {
+const Preview = ({
+  id,
+  attendeeIds,
+  createdAt,
+  label,
+  image,
+  people,
+  classes,
+  history,
+}) => {
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} onClick={() => history.push(`/event/${id}`)}>
       <CardHeader
         avatar="R"
         subheader={format(createdAt, 'DD MMMM YYYY')}
@@ -58,12 +67,14 @@ const Preview = ({ attendeeIds, createdAt, label, image, people, classes }) => {
 };
 
 Preview.propTypes = {
+  id: PropTypes.string,
   attendeeIds: PropTypes.array,
   createdAt: PropTypes.string,
   label: PropTypes.string,
   image: PropTypes.string,
   people: PropTypes.array,
   classes: PropTypes.object,
+  history: PropTypes.object,
 };
 
 export default injectSheet(style)(Preview);

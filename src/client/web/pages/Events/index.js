@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { compose, withStateHandlers } from 'recompose';
 import injectSheet from 'react-jss';
 import { getEvents } from '../../selectors/events';
@@ -29,6 +30,7 @@ const mapDispatchToProps = {
 };
 
 export default compose(
+  withRouter,
   connect(mapStateToProps, mapDispatchToProps),
   injectSheet(style),
   withStateHandlers(
