@@ -6,6 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
+import { loadSpendings } from './actions/event';
 import { loadEvents } from './actions/events';
 import { loadPeople } from './actions/people';
 import App from './components/App';
@@ -14,6 +15,7 @@ const store = createStore(reducer, applyMiddleware(thunk, createLogger));
 
 store.dispatch(loadEvents());
 store.dispatch(loadPeople());
+store.dispatch(loadSpendings());
 
 ReactDOM.render(
   <Provider store={store}>

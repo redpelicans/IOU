@@ -19,16 +19,18 @@ const styles = {
 
 const View = ({ classes, tab, setTab }) => {
   return (
-    <BottomNavigation
-      value={tab}
-      onChange={(event, value) => setTab(value)}
-      // showLabels
-      className={classes.root}
-    >
-      <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-      <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-      <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-    </BottomNavigation>
+    <div>
+      <BottomNavigation
+        value={tab}
+        onChange={(event, value) => setTab(value)}
+        showLabels
+        className={classes.root}
+      >
+        <BottomNavigationAction label="Spending" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="People" icon={<FavoriteIcon />} />
+        <BottomNavigationAction label="Stats" icon={<LocationOnIcon />} />
+      </BottomNavigation>
+    </div>
   );
 };
 

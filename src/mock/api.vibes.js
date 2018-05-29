@@ -11,13 +11,14 @@ vibe.default(
         api: {
           clientId,
           clientSecret,
-          data: { events, people },
+          data: { events, people, spendings },
         },
       },
     },
   ) => {
     mock('events:list').reply([200, events]);
     mock('people:list').reply([200, people]);
+    mock('spendings:list').reply([200, spendings]);
     mock('event:add').reply((req, res) => {
       const id = faker.random.uuid();
       const newEvent = {
@@ -42,6 +43,10 @@ vibe.default(
     mock('event:get').reply((req, res) => {
       const { id } = req.params;
       res.json(find(propEq('id', id), events));
+    });
+    mock('spendings:get').reply((req, res) => {
+      const { id } = req.params;
+      res.json(find(propEq('id', id), spendings));
     });
   },
 );
