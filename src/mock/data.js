@@ -17,13 +17,12 @@ const people = times(Person, 50);
 const Spending = () => ({
   id: faker.random.uuid(),
   label: faker.lorem.words(),
-  attendeeIds: compose(uniq, map(prop('id')))(
-    times(getRandom(people), random(0, 10)),
-  ),
+  due: random(10, 1000),
+  currency: 'EUR',
   createdAt: faker.date.past(),
 });
 
-const spendings = times(Spending, 50);
+const spendings = times(Spending, 5);
 
 const Event = () => ({
   id: faker.random.uuid(),

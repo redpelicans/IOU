@@ -1,6 +1,6 @@
 const { vibe } = require('farso');
 const faker = require('faker');
-const { findIndex, propEq, find, path } = require('ramda');
+const { findIndex, propEq, find, path, remove, filter } = require('ramda');
 
 vibe.default(
   'Main',
@@ -17,8 +17,6 @@ vibe.default(
     },
   ) => {
     mock('events:list').reply([200, events]);
-    mock('people:list').reply([200, people]);
-    mock('spendings:list').reply([200, spendings]);
     mock('event:add').reply((req, res) => {
       const id = faker.random.uuid();
       const newEvent = {
@@ -44,9 +42,38 @@ vibe.default(
       const { id } = req.params;
       res.json(find(propEq('id', id), events));
     });
-    mock('spendings:get').reply((req, res) => {
-      const { id } = req.params;
-      res.json(find(propEq('id', id), spendings));
+
+    mock('spendings:list').reply((req, res) =>
+      res.send(filter(spending => !spending.deleted, spendings)),
+    );
+    mock('spending:add').reply((req, res) => {
+      const id = faker.random.uuid();
+      const newSpending = {
+        id,
+        currency: 'EUR',
+        createdAt: new Date(),
+        ...req.body,
+      };
+      spendings.push(newSpending);
+      res.json(newSpending);
     });
+    mock('spending:update').reply((req, res) => {
+      const updates = req.body;
+      const index = findIndex(propEq('id', req.params.id), spendings);
+      if (index === -1) return res.sendStatus(404);
+      const updatedSpending = { ...spendings[index], ...updates };
+      spendings[index] = updatedSpending;
+      res.json(updatedSpending);
+    });
+    mock('spending:delete').reply((req, res) => {
+      const updates = req.body;
+      const index = findIndex(propEq('id', req.params.id), spendings);
+      if (index === -1) return res.sendStatus(404);
+      const updatedSpending = { ...spendings[index], deleted: true };
+      spendings[index] = updatedSpending;
+      res.json(updatedSpending);
+    });
+
+    mock('people:list').reply([200, people]);
   },
 );
