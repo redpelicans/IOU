@@ -30,18 +30,21 @@ const styles = {
   },
 };
 
-const Add = ({ addSpending, handleClose, classes }) => {
+const Add = ({ eventId, addSpending, handleClose, classes }) => {
   return (
     <Formik
       initialValues={{
+        eventId: eventId,
         label: '',
+        amount: '',
+        attendees: [],
         currency: 'EUR',
       }}
       validate={values => {
         let errors = {};
 
         if (!values.label) {
-          errors.label = 'Name is required';
+          errors.label = 'Required field';
         }
 
         return errors;
@@ -50,7 +53,7 @@ const Add = ({ addSpending, handleClose, classes }) => {
         const newSpending = {
           ...values,
         };
-
+        console.log(newSpending);
         addSpending(newSpending);
         handleClose();
       }}
@@ -75,6 +78,7 @@ const Add = ({ addSpending, handleClose, classes }) => {
 };
 
 Add.propTypes = {
+  eventId: PropTypes.string,
   addSpending: PropTypes.func,
   handleClose: PropTypes.func,
   classes: PropTypes.object,

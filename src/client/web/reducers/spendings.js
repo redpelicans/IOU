@@ -11,7 +11,7 @@ const initialState = {
   spendings: [],
 };
 
-const event = (state = initialState, action) => {
+const spendings = (state = initialState, action) => {
   switch (action.type) {
     case SPENDINGS_LOADED:
       return { ...state, spendings: action.payload.spendings };
@@ -44,4 +44,4 @@ const event = (state = initialState, action) => {
   }
 };
 
-export default event;
+export default spendings;

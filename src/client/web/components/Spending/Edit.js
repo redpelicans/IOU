@@ -31,6 +31,7 @@ const styles = {
 };
 
 const Edit = ({ spending, updateSpending, handleClose, classes }) => {
+  console.log(spending);
   return (
     <Formik
       initialValues={{

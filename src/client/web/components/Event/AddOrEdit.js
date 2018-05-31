@@ -45,6 +45,7 @@ const AddOrEdit = ({ classes }) => {
         id="attendeeIds"
         name="attendeeIds"
         classes={classes}
+        multiple={true}
         component={SelectPeople}
       />
     </Form>

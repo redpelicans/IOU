@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map } from 'ramda';
+import { map, find, propEq } from 'ramda';
 import Button from 'material-ui/Button';
 import AddIcon from '@material-ui/icons/Add';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -10,7 +10,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Spending from '../../components/Spending/Preview';
 import Form from '../../components/Spending/Form';
-import { getSpending } from '../../selectors/event';
+import { getSpending } from '../../selectors/spendings';
 
 const Event = ({
   classes,
@@ -25,10 +25,13 @@ const Event = ({
   handleOpen,
   id,
   setId,
+  event,
+  attendees,
 }) => {
   return (
     <div>
       <Form
+        id={id}
         isOpen={isOpen}
         spending={getSpending(id, spendings)}
         addSpending={addSpending}
@@ -86,6 +89,8 @@ Event.propTypes = {
   handleClose: PropTypes.func,
   id: PropTypes.string,
   setId: PropTypes.func,
+  event: PropTypes.object,
+  attendees: PropTypes.array,
 };
 
 export default Event;

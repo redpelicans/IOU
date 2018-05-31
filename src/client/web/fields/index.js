@@ -64,14 +64,14 @@ const mapStateToProps = state => ({
 });
 
 export const SelectPeople = connect(mapStateToProps)(
-  ({ people, field, classes }) => {
+  ({ people, field, classes, multiple }) => {
     return (
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="people">People</InputLabel>
         <Select
-          multiple
+          multiple={multiple}
           input={<Input id="people" />}
-          value={field.value}
+          value={field.value === undefined ? '' : field.value}
           name={field.name}
           onChange={field.onChange}
         >

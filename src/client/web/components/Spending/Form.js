@@ -5,6 +5,7 @@ import Add from './Add';
 import Edit from './Edit';
 
 const Form = ({
+  id,
   isOpen,
   spending,
   addSpending,
@@ -26,13 +27,14 @@ const Form = ({
           handleClose={handleClose}
         />
       ) : (
-        <Add addSpending={addSpending} handleClose={handleClose} />
+        <Add eventId={id} addSpending={addSpending} handleClose={handleClose} />
       )}
     </Dialog>
   );
 };
 
 Form.propTypes = {
+  id: PropTypes.string,
   isOpen: PropTypes.bool,
   addSpending: PropTypes.func,
   updateSpending: PropTypes.func,

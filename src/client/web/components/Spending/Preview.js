@@ -10,7 +10,7 @@ const Preview = ({
   classes,
   id,
   label,
-  due,
+  amount,
   createdAt,
   deleteSpending,
   setId,
@@ -32,7 +32,7 @@ const Preview = ({
         subheader={format(createdAt, 'DD MMMM YYYY')}
         title={label}
       />
-      <CardContent>{`${due ? due : 0} $`}</CardContent>
+      <CardContent>{`${amount ? amount : 0} $`}</CardContent>
     </Card>
   );
 };
@@ -41,7 +41,7 @@ Preview.propTypes = {
   classes: PropTypes.object,
   id: PropTypes.string,
   label: PropTypes.string,
-  due: PropTypes.number,
+  amount: PropTypes.number,
   deleteSpending: PropTypes.func,
   setId: PropTypes.func,
   createdAt: PropTypes.string,

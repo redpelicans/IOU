@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 import injectSheet from 'react-jss';
 import { compose, withStateHandlers } from 'recompose';
 import Event from './component.js';
-import { getSpendings } from '../../selectors/event';
-import { getEvents } from '../../selectors/events';
-import { getPeople } from '../../selectors/people';
+import { getSpendings } from '../../selectors/spendings';
+import { getEvent } from '../../selectors/events';
+import { getAttendees } from '../../selectors/people';
 
 import {
   addSpending,
@@ -18,7 +17,6 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-around',
     margin: 5,
-    // backgroundColor: '#4054b2',
   },
   card: {
     margin: 10,
@@ -35,10 +33,17 @@ const styles = {
   },
 };
 
-const mapStateToProps = state => ({
-  events: getEvents(state),
-  people: getPeople(state),
-  spendings: getSpendings(state),
+const mapStateToProps = (
+  state,
+  {
+    match: {
+      params: { id },
+    },
+  },
+) => ({
+  event: getEvent(id)(state),
+  attendees: getAttendees(id)(state),
+  spendings: getSpendings(id)(state),
 });
 
 const mapDispatchToProps = {
@@ -48,7 +53,6 @@ const mapDispatchToProps = {
 };
 
 export default compose(
-  withRouter,
   connect(mapStateToProps, mapDispatchToProps),
   injectSheet(styles),
   withStateHandlers(
