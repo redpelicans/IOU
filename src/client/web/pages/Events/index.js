@@ -3,7 +3,7 @@ import { compose, withStateHandlers } from 'recompose';
 import injectSheet from 'react-jss';
 import { getEvents } from '../../selectors/events';
 import { getPeople } from '../../selectors/people';
-import { addEvent } from '../../actions/events';
+import { addEvent, updateEvent, deleteEvent } from '../../actions/events';
 import Events from './component';
 
 const style = {
@@ -26,6 +26,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   addEvent,
+  updateEvent,
+  deleteEvent,
 };
 
 export default compose(
@@ -34,10 +36,12 @@ export default compose(
   withStateHandlers(
     {
       isOpen: false,
+      id: '',
     },
     {
       handleOpen: () => () => ({ isOpen: true }),
-      handleClose: () => () => ({ isOpen: false }),
+      handleClose: () => () => ({ isOpen: false, id: '' }),
+      setId: () => id => ({ id: id, isOpen: true }),
     },
   ),
 )(Events);

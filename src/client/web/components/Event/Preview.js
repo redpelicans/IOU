@@ -6,6 +6,9 @@ import injectSheet from 'react-jss';
 import Avatar from 'material-ui/Avatar';
 import Card, { CardHeader, CardMedia, CardContent } from 'material-ui/Card';
 import GridList, { GridListTile } from 'material-ui/GridList';
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { getPerson } from '../../selectors/people';
 
 const initials = ({ firstname, lastname }) =>
@@ -27,11 +30,31 @@ const style = {
   },
 };
 
-const Preview = ({ attendeeIds, createdAt, label, image, people, classes }) => {
+const Preview = ({
+  id,
+  attendeeIds,
+  createdAt,
+  label,
+  image,
+  people,
+  classes,
+  setId,
+  deleteEvent,
+}) => {
   return (
     <Card className={classes.card}>
       <CardHeader
         avatar="R"
+        action={
+          <div>
+            <IconButton onClick={() => setId(id)}>
+              <Icon>edit_icon</Icon>
+            </IconButton>
+            <IconButton onClick={() => deleteEvent(id)}>
+              <DeleteIcon />
+            </IconButton>
+          </div>
+        }
         subheader={format(createdAt, 'DD MMMM YYYY')}
         title={label}
       />
@@ -58,12 +81,15 @@ const Preview = ({ attendeeIds, createdAt, label, image, people, classes }) => {
 };
 
 Preview.propTypes = {
+  id: PropTypes.string,
   attendeeIds: PropTypes.array,
   createdAt: PropTypes.string,
   label: PropTypes.string,
   image: PropTypes.string,
   people: PropTypes.array,
   classes: PropTypes.object,
+  setId: PropTypes.func,
+  deleteEvent: PropTypes.func,
 };
 
 export default injectSheet(style)(Preview);
